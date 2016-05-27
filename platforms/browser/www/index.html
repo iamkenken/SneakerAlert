@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    Customize this policy to fit your own app's needs. For more guidance, see:
+      https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+    Some notes:
+      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+    -->
+  <!-- Removing 'unsafe-eval'. If needed, I will figure out a way around it -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com https://api.spotify.com 'unsafe-eval' 'unsafe-inline' ws://*; style-src 'self' 'unsafe-inline'; media-src *; img-src * data:">
+
+  <!-- Required meta tags-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <link rel="stylesheet" href="js/font-awesome-4.5.0/css/font-awesome.min.css" />
+
+  <title>SNKR ALRT</title>
+</head>
+
+<body class="theme-blue">
+
+<div class="statusbar-overlay"></div>
+
+<!-- Panels overlay-->
+<div class="panel-overlay"></div>
+<!-- Left panel with cover effect-->
+<div class="panel panel-left panel-cover">
+<!--<div class="content-block">-->
+<!-- <div class="content-block-title"></div> -->
+<div class="list-block">
+  <ul>
+    <li>
+      <a href="#" data-template="profile" class="profile-link item-content list-panel-all close-panel item-link">
+        <div class="item-inner">
+          <div class="item-title">Profile</div>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="setting-link item-content list-panel-all close-panel item-link">
+        <div class="item-inner">
+          <div class="item-title">Settings</div>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="logout-link item-content list-panel-all close-panel item-link">
+        <div class="item-inner">
+          <div class="item-title">Logout</div>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+<!-- Views -->
+<div class="views">
+<!-- Your main view, should have "view-main" class-->
+<div class="view view-main">
+<!-- Top Navbar-->
+<div class="navbar">
+    <!-- Home Navbar -->
+    <div class="navbar-inner" data-paged="index">
+    <div class="left sliding">
+      <a href="#" class="link icon-only open-panel"> <i class="fa fa-bars color-white"></i></a>
+    </div>
+    <div class="center color-white">SNKR ALRT</div>
+    </div>
+</div>
+<!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+<div class="pages navbar-through toolbar-through">
+    <!-- Home Page-->
+    <div class="page" data-page="index">
+    <!-- Scrollable page content-->
+    <div class="page-content">
+      <div class="content-block">
+        <div class="row">
+            <!-- Each "cell" has col-[widht in percents] class -->
+            <div class="col-100 text-center">
+                <img src="img/h.png" width="90">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-100 text-center">
+            <img src="img/s.png" width="220">
+            <p class="s-name">Nike Huarache</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-100 text-center">
+            <img src="img/x.png" width="90">
+            </div>
+        </div> 
+      </div>
+    </div>
+    </div>
+</div>
+<!-- Bottom Toolbar-->
+<!-- div class="toolbar">
+  <div class="toolbar-inner"><a href="#" class="link">Link 1</a><a href="#" class="link">Link 2</a></div>
+</div> -->
+</div>
+</div>
+
+<script type="text/template7" id="profile">
+    <!-- Dynamic navbar for iOS theme -->
+    {{#if @global.ios}}
+    <div class="navbar">
+        <!-- Profile Navbar -->
+        <div class="navbar-inner" data-paged="profile">
+        <div class="left sliding">
+          <a href="#" class="link icon-only open-panel"> <i class="fa fa-bars color-white"></i></a>
+        </div>
+        <div class="center color-white">Profile</div>
+        </div>
+    </div>
+    {{/if}}
+    <div class="page" data-page="profile">
+        <!-- Fixed navbar for Material theme -->
+        {{#if @global.material}}
+        <div class="navbar">
+        <!-- Home Navbar -->
+        <div class="navbar-inner" data-paged="index">
+        <div class="left sliding">
+          <a href="#" class="link icon-only open-panel"> <i class="fa fa-bars color-white"></i></a>
+        </div>
+        <div class="center color-white">Profile</div>
+        </div>
+        </div>
+        {{/if}}
+        <div class="page-content">
+          <div class="content-block">
+              <div class="content-block">
+                <div class="row">
+                    <!-- Each "cell" has col-[widht in percents] class -->
+                    <div class="col-100 text-center">
+                        <img class="pic" src="img/p.jpg" width="90">
+                        <p class="p-name">Klexis Grey</p>
+                        <p class="p-collection">My Collection</p>
+                    </div>
+                </div>
+                <div class="white-line"></div>
+                <div class="row">
+                    <div class="col-33 text-center">
+                    <div class="bg-white-opa">
+                    <img src="img/s.png" width="100%">
+                    </div>
+                    </div>
+                    <div class="col-33 text-center">
+                    <div class="bg-white-opa">
+                    <img src="img/s.png" width="100%">
+                    </div>
+                    </div>
+                    <div class="col-33 text-center">
+                    <div class="bg-white-opa">
+                    <img src="img/s.png" width="100%">
+                    </div>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-33 text-center">
+                    <div class="bg-white-opa">
+                    <img src="img/s.png" width="100%">
+                    </div>
+                    </div>
+                    <div class="col-33 text-center">
+                    <div class="bg-white-opa">
+                    <img src="img/s.png" width="100%">
+                    </div>
+                    </div>
+                    <div class="col-33 text-center">
+                    <div class="bg-white-opa">
+                    <img src="img/s.png" width="100%">
+                    </div>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-33 text-center">
+                    <div class="bg-white-opa">
+                    <img src="img/s.png" width="100%">
+                    </div>
+                    </div>
+                    <div class="col-33 text-center">
+                    <div class="bg-white-opa">
+                    <img src="img/s.png" width="100%">
+                    </div>
+                    </div>
+                    <div class="col-33 text-center">
+                    <div class="bg-white-opa">
+                    <img src="img/s.png" width="100%">
+                    </div>
+                    </div>
+                </div> 
+              </div>
+          </div>
+        </div>
+    </div>
+</script>  
+
+
+
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/MSOpenTech/winstore-jscompat.js"></script>
+<script type="text/javascript" src="js/framework7/js/framework7.min.js"></script>
+<script type="text/javascript" src="js/openfb.js"></script>
+<script type="text/javascript" src="js/init-styles.js"></script>
+<script type="text/javascript" src="js/snkr.js"></script>
+
+<!-- FAcebook Login -->
+<script type="text/javascript">
+  openFB.init({appId: '1209697875721621'}); // Defaults to sessionStorage for storing the Facebook token
+
+//  Uncomment the line below to store the Facebook token in localStorage instead of sessionStorage
+//  openFB.init('YOUR_FB_APP_ID', 'http://localhost/openfb/oauthcallback.html', window.localStorage);
+
+    function login() {
+        openFB.login('email',
+                function() {
+                    alert('Facebook login succeeded');
+                },
+                function() {
+                    alert('Facebook login failed');
+                });
+    }
+
+    function getInfo() {
+        openFB.api({
+            path: '/me',
+            success: function(data) {
+                console.log(JSON.stringify(data));
+                document.getElementById("userName").innerHTML = data.name;
+                document.getElementById("userPic").src = 'http://graph.facebook.com/' + data.id + '/picture?type=small';
+            },
+            error: errorHandler});
+    }
+
+    function share() {
+        openFB.api({
+            method: 'POST',
+            path: '/me/feed',
+            params: {
+                message: 'Testing Facebook APIs'
+            },
+            success: function(data) {
+                alert('the item was posted on Facebook');
+            },
+            error: errorHandler});
+    }
+
+    function revoke() {
+        openFB.revokePermissions(
+                function() {
+                    alert('Permissions revoked');
+                },
+                errorHandler);
+    }
+
+    function errorHandler(error) {
+        alert(error.message);
+    }
+</script>
+</body>
+
+</html>
