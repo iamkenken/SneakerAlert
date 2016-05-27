@@ -8,7 +8,11 @@ body {
   -webkit-text-size-adjust: none;
   -webkit-user-select: none;
           user-select: none;
-  background: #029aff;
+  background: #0293f4;
+  background: -webkit-linear-gradient(#0293f4, #20a3fa, #059bff); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#0293f4, #20a3fa, #059bff); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#0293f4, #20a3fa, #059bff); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#0293f4, #20a3fa, #059bff); /* Standard syntax */
 }
 
 .navbar.theme-blue, .searchbar.theme-blue, .subnavbar.theme-blue, .theme-blue .navbar, .theme-blue .searchbar, .theme-blue .subnavbar, .theme-blue .toolbar, .toolbar.theme-blue {
@@ -31,7 +35,7 @@ div[class*="col-"] {
 .page-content {
   touch-action: pan-y;
   -ms-touch-action: pan-y;
-  background: #029aff;
+  background: #0293f4;
 }
 
 .views,
@@ -79,6 +83,10 @@ div[class*="col-"] {
 .bg-white-opa{
   background: rgba(255,255,255,0.5);
   padding: 5px 2px;
+}
+
+.w30{
+  height: 30px;
 }
 
 .swiper-container {
