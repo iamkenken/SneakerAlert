@@ -80,7 +80,7 @@ var mainView = myApp.addView('.view-main', {
 /*mainView.router.load({pageName: 'profile'});*/
 // Handle Cordova Device Ready Event
 //var api_url = 'http://snkralrt.dev/api/v1';
-var api_url = 'http://dev.alfafusion.com/snkr-alrt/public/api/v1';
+var api_url = 'http://dev.alfafusion.com/snkrt-alrt/public/api/v1';
 
 $$(document).on('deviceready', function deviceIsReady() {
   
