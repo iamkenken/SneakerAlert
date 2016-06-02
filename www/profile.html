@@ -38,7 +38,7 @@
 <div class="list-block">
   <ul>
     <li>
-      <a href="#" id="a-profile" data-template="profileTemplate" class="profile-link item-content list-panel-all close-panel item-link">
+      <a href="#" id="a-profile" data-template="profile" class="profile-link item-content list-panel-all close-panel item-link">
         <div class="item-inner">
           <div id="menu-profile" class="item-title">Profile</div>
         </div>
@@ -122,7 +122,7 @@
                     <div class="item-media"><i class="icon icon-form-name"></i></div>
                     <div class="item-inner">
                       <div class="item-input">
-                        <input type="text" placeholder="Username" name="username" id="username">
+                        <input type="email" placeholder="Email" name="email" id="email">
                       </div>
                     </div>
                   </div>
@@ -133,7 +133,7 @@
               <ul class="width250">
                 <li class="input">
                   <div class="item-content">
-                    <div class="item-media"><i class="icon icon-form-password"></i></div>
+                    <div class="item-media"><i class="icon icon-form-email"></i></div>
                     <div class="item-inner">
                       <div class="item-input">
                         <input type="password" placeholder="Password" name="pass" id="pass">
@@ -150,7 +150,7 @@
             </div>
             <div class="list-block">
               <ul class="width250">
-                <li><a href="#" class="item-link list-button btn-blue text-center" data-template="signupTemplate">SIGN UP</a></li>
+                <li><a href="#" class="item-link list-button btn-blue text-center">SIGN UP</a></li>
               </ul>
               <div class="list-block-label">
               </div>
@@ -169,96 +169,8 @@
 </div>
 </div>
 
-<script type="text/template7" id="signupTemplate">
 
-    <div class="page" data-page="signupTemplate">
-        <div class="page-content">
-          <div class="content-block">
-            <div class="row">
-            <div class="col-100">
-            <div class="text-center">
-            <img src="img/shoe.png" width="80">
-            <p class="login-title">SNKR ALRT</p>
-            </div>
-                 <form action="http://snkralrt.dev/api/v1/register" method="POST">
-                <div class="list-block">
-                  <ul class="width250">
-                    <li><a href="#" class="item-link list-button btn-blue text-center"><img src="img/fb.png" class="fbicon" width="20">LOG IN WITH FACEBOOK</a></li>
-                  </ul>
-                </div>
-                <div class="list-block theme-white">
-                  <ul class="width250">
-                    <li class="input">
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-form-name"></i></div>
-                        <div class="item-inner">
-                          <div class="item-input">
-                            <input type="text" placeholder="Username" name="susername" id="susername">
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div class="list-block theme-white">
-                  <ul class="width250">
-                    <li class="input">
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-form-email"></i></div>
-                        <div class="item-inner">
-                          <div class="item-input">
-                            <input type="email" placeholder="Email" name="semail" id="semail">
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div class="list-block theme-white">
-                  <ul class="width250">
-                    <li class="input">
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-form-password"></i></div>
-                        <div class="item-inner">
-                          <div class="item-input">
-                            <input type="password" placeholder="Password" name="spass" id="spass">
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div class="list-block theme-white">
-                  <ul class="width250">
-                    <li class="input">
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-form-password"></i></div>
-                        <div class="item-inner">
-                          <div class="item-input">
-                            <input type="password" placeholder="Confirm Password" name="scpass" id="scpass">
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div class="list-block">
-                  <ul class="width250">
-                    <li><a id="btn-signup" href="#" class="item-link list-button btn-blue text-center">SIGN UP</a></li>
-                  </ul>
-                  <div class="list-block-label">
-                  </div>
-                </div>
-              </form>
-            </div>
-            </div>
-          </div>
-        </div>
-    </div>
-</script> 
-
-
-<script type="text/template7" id="profileTemplate">
+<script type="text/template7" id="profile">
     <!-- Dynamic navbar for iOS theme -->
     {{#if @global.ios}}
     <div class="navbar">
@@ -291,7 +203,7 @@
                     <!-- Each "cell" has col-[widht in percents] class -->
                     <div class="col-100 text-center">
                         <img class="pic" src="img/p.jpg" width="90">
-                        <p class="p-name"></p>
+                        <p class="p-name">Klexis Grey</p>
                         <p class="p-collection">My Collection</p>
                     </div>
                 </div>
@@ -386,8 +298,6 @@
         </div>
     </div>
 </script>  
-
-
 
 
 
