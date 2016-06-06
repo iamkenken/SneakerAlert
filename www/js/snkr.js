@@ -79,7 +79,11 @@ var mainView = myApp.addView('.view-main', {
 
 /*mainView.router.load({pageName: 'profile'});*/
 // Handle Cordova Device Ready Event
-//var api_url = 'http://snkralrt.dev/api/v1';
+
+/*Local*/
+/*var api_url = 'http://snkralrt.dev/api/v1';*/
+
+/*Dev*/
 var api_url = 'http://dev.alfafusion.com/snkrt-alrt/public/api/v1';
 
 $$(document).on('deviceready', function deviceIsReady() {
@@ -89,7 +93,7 @@ $$(document).on('deviceready', function deviceIsReady() {
     var pass = $$('#pass').val();
     $$.get(api_url+'/login', {username: username, pass: pass}, function (data) {
       var datas = JSON.parse(data);
-      console.log(datas['status']);
+      console.log(datas);
       if(datas['status'] == 'OK'){
         var fname = datas['data']['firstname'];
 
