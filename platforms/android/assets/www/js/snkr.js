@@ -87,42 +87,177 @@ var mainView = myApp.addView('.view-main', {
 var api_url = 'http://dev.alfafusion.com/snkrt-alrt/public/api/v1';
 
 $$(document).on('deviceready', function deviceIsReady() {
-  
-  $$('#btn-auth').click(function(){
+
+  if(localStorage.auth == undefined)
+  {
+    mainView.router.load({
+      template: myApp.templates.loginTemplate,
+      animatePages: true,
+      context: {
+      },
+      reload: true,
+    });
+    localStorage.currentPage = 'loginpage';
+  }
+  else
+  {
+    mainView.router.load({
+      template: myApp.templates.homeTemplate,
+      animatePages: true,
+      context: {
+      },
+      reload: true,
+    });
+    localStorage.currentPage = 'homepage';
+  }
+
+  if(localStorage.photo == undefined)
+  {
+    localStorage.photo = 'img/p.jpg';
+  }
+
+  $$(document).on('submit', '#loginForm', function(){
+    
     var username = $$('#username').val();
     var pass = $$('#pass').val();
-    $$.get(api_url+'/login', {username: username, pass: pass}, function (data) {
-      var datas = JSON.parse(data);
-      console.log(datas);
-      if(datas['status'] == 'OK'){
-        var fname = datas['data']['firstname'];
+    if(username == ''){
+      $$('#username').focus();
+    }else if(pass == ''){
+      $$('#pass').focus();
+    }else{
+      $$('body').append('<span style="width:42px; height:42px; position: absolute; top: 45%; left: 45%; z-index: 9999;" class="preloader preloader-dark"></span>');
+      $$.get(api_url+'/login', {username: username, pass: pass}, function (data) {
+        //$$('.preloader').remove();
+        var datas = JSON.parse(data);
+        
+        if(datas['status'] == 'OK'){
+          console.log(datas['data']['photo']);
+          localStorage.auth = 'true';
+          localStorage.un = username;
+          localStorage.pass = pass;
+          localStorage.fname = datas['data']['firstname'];
+          localStorage.lname = datas['data']['lastname'];
+          if(datas['data']['photo'] !== ''){
+          localStorage.photo = datas['data']['photo'];
+          }else{
+             localStorage.photo = 'img/p.jpg';
+          }
+          localStorage.userid = datas['data']['user_id'];
 
-        $$('#menu-profile').trigger('click');
-        $$('.p-name').text(fname);
-      }
-    });
+          /*$$('#menu-profile').trigger('click');
+          $$('.p-name').text(localStorage.un);*/
+
+          localStorage.currentPage = 'profilepage';
+          mainView.router.load({
+            template: myApp.templates.profileTemplate,
+            animatePages: true,
+            context: {
+              name: localStorage.un,
+              photo: localStorage.photo
+            },
+            reload: true,
+          });
+        }else{
+          myApp.alert('Your shoes does not fit. Try again', 'SNKR ALRT');
+        }
+      });
+    }
+    return false;
   });
   
+  $$(document).on('submit', '#signupForm', function(){
+    var username = $$('#susername').val();
+    var email = $$('#semail').val();
+    var pass = $$('#spass').val();
+    var cpass = $$('#scpass').val();
+    if(username == ''){
+      $$('#susername').focus();
+    }else if(email == ''){
+      $$('#semail').focus();
+    }else if(pass == ''){
+      $$('#spass').focus();
+    }else if(cpass == ''){
+      $$('#scpass').focus();
+    }else if(cpass != pass){
+      myApp.alert('Password do not match', 'SNKR ALRT');
+    }else{
+      $$('body').append('<span style="width:42px; height:42px; position: absolute; top: 45%; left: 45%; z-index: 9999;" class="preloader preloader-dark"></span>');
+      $$.get(api_url+'/register', {username: username, email: email, pass: pass}, function (data) {
+        $$('.preloader').remove();
+        var datas = JSON.parse(data);
+        console.log(datas);
+        if(datas['status'] == 'OK'){
+          localStorage.auth = 'true';
+          localStorage.un = username;
+          localStorage.pass = pass;
+          localStorage.fname = datas['data']['firstname'];
+          localStorage.lname = datas['data']['lastname'];
+          if(datas['data']['photo'] !== ''){
+          localStorage.photo = datas['data']['photo'];
+          }else{
+             localStorage.photo = 'img/p.jpg';
+          }
+          localStorage.userid = datas['data']['user_id'];
 
-});
+          /*$$('#menu-profile').trigger('click');
+          $$('.p-name').text(localStorage.un);*/
+          localStorage.currentPage = 'profilepage';
+          mainView.router.load({
+            template: myApp.templates.profileTemplate,
+            animatePages: true,
+            context: {
+              name: localStorage.un,
+              photo: localStorage.photo
+            },
+            reload: true,
+          });
+        }else{
+          myApp.alert(datas['error'], 'SNKR ALRT');
+        }
+      });
+    }
+    return false;
+  });
 
+  $$('#logout').click(function(){
+    localStorage.clear();
+    mainView.router.load({
+      template: myApp.templates.loginTemplate,
+      animatePages: true,
+      context: {
+      },
+      reload: true,
+    });
+  });
 
-$$(document).on('click', '#btn-signup', function(){
-  var username = $$('#susername').val();
-  var email = $$('#semail').val();
-  var pass = $$('#spass').val();
-  var cpass = $$('#scpass').val();
-  $$.get(api_url+'/register', {username: username, email: email, pass: pass}, function (data) {
-    var datas = JSON.parse(data);
-    console.log(datas);
-    if(datas['status'] == 'OK'){
-      var fname = datas['data']['username'];
-
-      $$('#menu-profile').trigger('click');
-      $$('.p-name').text(fname);
+  $$('#a-browse').click(function(){
+    if(localStorage.currentPage  !== 'homepage')
+    {
+      mainView.router.load({pageName: 'index'});
+      localStorage.currentPage = 'homepage';
     }
   });
+
+  $$('#a-profile').click(function(){
+    if(localStorage.currentPage !== 'profilepage')
+    {
+      mainView.router.load({
+        template: myApp.templates.profileTemplate,
+        animatePages: true,
+        context: {
+          name: localStorage.un,
+          photo: localStorage.photo
+        },
+        reload: true,
+      });
+      localStorage.currentPage = 'profilepage';
+    }
+  });
+
 });
+
+
+
 
 /*$$(document).on('click', '.profile-link', function profileLink() {
 mainView.router.loadContent($$('#myPage').html());

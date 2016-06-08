@@ -37,22 +37,29 @@
 <!-- <div class="content-block-title"></div> -->
 <div class="list-block">
   <ul>
-    <li>
-      <a href="#" id="a-profile" data-template="profileTemplate" class="profile-link item-content list-panel-all close-panel item-link">
+    <li class="listbrowse">
+      <a href="#" id="a-browse" class="browse-link item-content list-panel-all close-panel item-link">
+        <div class="item-inner">
+          <div id="menu-browse" class="item-title">Browse</div>
+        </div>
+      </a>
+    </li>
+    <li class="listprofile">
+      <a href="#" id="a-profile" class="profile-link item-content list-panel-all close-panel item-link">
         <div class="item-inner">
           <div id="menu-profile" class="item-title">Profile</div>
         </div>
       </a>
     </li>
-    <li>
+    <li class="listsettings">
       <a href="#" class="setting-link item-content list-panel-all close-panel item-link">
         <div class="item-inner">
           <div class="item-title">Settings</div>
         </div>
       </a>
     </li>
-    <li>
-      <a href="#" class="logout-link item-content list-panel-all close-panel item-link">
+    <li class="listlogout">
+      <a href="#" id="logout" class="logout-link item-content list-panel-all close-panel item-link">
         <div class="item-inner">
           <div class="item-title">Logout</div>
         </div>
@@ -83,8 +90,8 @@
     <!-- Scrollable page content-->
     <div class="page-content">
       <div class="content-block">
-        <!-- <div class="row">
-            Each "cell" has col-[widht in percents] class
+         <div class="row">
+            <!-- Each "cell" has col-[widht in percents] class -->
             <div class="col-100 text-center">
                 <img src="img/h.png" width="90">
             </div>
@@ -101,63 +108,8 @@
             <div class="col-100 text-center">
             <img src="img/x.png" width="90">
             </div>
-        </div>  -->
+        </div>
 
-        <div class="row">
-        <div class="col-100">
-        <div class="text-center">
-        <img src="img/shoe.png" width="80">
-        <p class="login-title">SNKR ALRT</p>
-        </div>
-             <form action="http://snkralrt.dev/api/v1/login" method="GET" class="ajax-submit-onchange">
-            <div class="list-block">
-              <ul class="width250">
-                <li><a href="#" class="item-link list-button btn-blue text-center"><img src="img/fb.png" class="fbicon" width="20">LOG IN WITH FACEBOOK</a></li>
-              </ul>
-            </div>
-            <div class="list-block theme-white">
-              <ul class="width250">
-                <li class="input">
-                  <div class="item-content">
-                    <div class="item-media"><i class="icon icon-form-name"></i></div>
-                    <div class="item-inner">
-                      <div class="item-input">
-                        <input type="text" placeholder="Username" name="username" id="username">
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="list-block theme-white">
-              <ul class="width250">
-                <li class="input">
-                  <div class="item-content">
-                    <div class="item-media"><i class="icon icon-form-password"></i></div>
-                    <div class="item-inner">
-                      <div class="item-input">
-                        <input type="password" placeholder="Password" name="pass" id="pass">
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="list-block">
-              <ul class="width250">
-                <li><a id="btn-auth" class="item-link list-button btn-yellow text-center">SIGN IN</a></li>
-              </ul>
-            </div>
-            <div class="list-block">
-              <ul class="width250">
-                <li><a href="#" class="item-link list-button btn-blue text-center" data-template="signupTemplate">SIGN UP</a></li>
-              </ul>
-              <div class="list-block-label">
-              </div>
-            </div>
-          </form>
-        </div>
-        </div>
       </div>
     </div>
     </div>
@@ -180,7 +132,7 @@
             <img src="img/shoe.png" width="80">
             <p class="login-title">SNKR ALRT</p>
             </div>
-                 <form action="http://snkralrt.dev/api/v1/register" method="POST">
+                 <form id="signupForm" method="GET" class="ajax-submit">
                 <div class="list-block">
                   <ul class="width250">
                     <li><a href="#" class="item-link list-button btn-blue text-center"><img src="img/fb.png" class="fbicon" width="20">LOG IN WITH FACEBOOK</a></li>
@@ -244,7 +196,7 @@
                 </div>
                 <div class="list-block">
                   <ul class="width250">
-                    <li><a id="btn-signup" href="#" class="item-link list-button btn-blue text-center">SIGN UP</a></li>
+                    <li><input type="submit" id="btn-signup" style="width: 100%" class="item-link list-button btn-blue text-center" vale="SIGN UP"></li>
                   </ul>
                   <div class="list-block-label">
                   </div>
@@ -252,6 +204,71 @@
               </form>
             </div>
             </div>
+          </div>
+        </div>
+    </div>
+</script> 
+
+<script type="text/template7" id="loginTemplate">
+
+    <div class="page" data-page="loginTemplate">
+        <div class="page-content">
+          <div class="content-block">
+            <div class="row">
+        <div class="col-100">
+        <div class="text-center">
+        <img src="img/shoe.png" width="80">
+        <p class="login-title">SNKR ALRT</p>
+        </div>
+          <form id="loginForm" method="POST" class="ajax-submit">
+            <div class="list-block">
+              <ul class="width250">
+                <li><a href="#" class="item-link list-button btn-blue text-center"><img src="img/fb.png" class="fbicon" width="20">LOG IN WITH FACEBOOK</a></li>
+              </ul>
+            </div>
+            <div class="list-block theme-white">
+              <ul class="width250">
+                <li class="input">
+                  <div class="item-content">
+                    <div class="item-media"><i class="icon icon-form-name"></i></div>
+                    <div class="item-inner">
+                      <div class="item-input">
+                        <input type="text" placeholder="Username" name="username" id="username">
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="list-block theme-white">
+              <ul class="width250">
+                <li class="input">
+                  <div class="item-content">
+                    <div class="item-media"><i class="icon icon-form-password"></i></div>
+                    <div class="item-inner">
+                      <div class="item-input">
+                        <input type="password" placeholder="Password" name="pass" id="pass">
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="list-block">
+              <ul class="width250">
+                <li><input type="submit" style="width: 100%;" id="btn-auth" class="item-link list-button btn-yellow text-center" value="SIGN IN"></li>
+              </ul>
+            </div>
+            <div class="list-block">
+              <ul class="width250">
+                <li><a href="#" class="item-link list-button btn-blue text-center" data-template="signupTemplate">SIGN UP</a></li>
+              </ul>
+              <div class="list-block-label">
+              </div>
+            </div>
+          </form>
+        </div>
+        </div>
           </div>
         </div>
     </div>
@@ -271,12 +288,12 @@
         </div>
     </div>
     {{/if}}
-    <div class="page" data-page="profile">
+    <div class="page" data-page="profileTemplate">
         <!-- Fixed navbar for Material theme -->
         {{#if @global.material}}
         <div class="navbar">
         <!-- Home Navbar -->
-        <div class="navbar-inner" data-paged="index">
+        <div class="navbar-inner" data-paged="profile">
         <div class="left sliding">
           <a href="#" class="link icon-only open-panel"> <i class="fa fa-bars color-white"></i></a>
         </div>
@@ -290,8 +307,8 @@
                 <div class="row">
                     <!-- Each "cell" has col-[widht in percents] class -->
                     <div class="col-100 text-center">
-                        <img class="pic" src="img/p.jpg" width="90">
-                        <p class="p-name"></p>
+                        <img class="pic" src="{{photo}}" width="90">
+                        <p class="p-name">{{name}}</p>
                         <p class="p-collection">My Collection</p>
                     </div>
                 </div>
